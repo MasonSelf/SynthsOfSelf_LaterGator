@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="Ecyl9u" name="LaterGator" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              version="1.0.1" companyName="Synths of Self" pluginManufacturerCode="Sose"
+              pluginCode="Late">
+  <MAINGROUP id="BB3ttJ" name="LaterGator">
+    <GROUP id="{4868FE74-5543-34C8-D80F-8C55D36F3E96}" name="Source">
+      <FILE id="gZQNDa" name="crocodile.png" compile="0" resource="1" file="Source/crocodile.png"/>
+      <FILE id="SxI8Dy" name="DelayLine.cpp" compile="1" resource="0" file="Source/DelayLine.cpp"/>
+      <FILE id="cCWBSL" name="DelayLine.h" compile="0" resource="0" file="Source/DelayLine.h"/>
+      <FILE id="EnuY78" name="GatorSlider.h" compile="0" resource="0" file="Source/GatorSlider.h"/>
+      <FILE id="qSjWmq" name="LaterGatorAdjustmentWindow.cpp" compile="1"
+            resource="0" file="Source/LaterGatorAdjustmentWindow.cpp"/>
+      <FILE id="DmBs7G" name="LaterGatorAdjustmentWindow.h" compile="0" resource="0"
+            file="Source/LaterGatorAdjustmentWindow.h"/>
+      <FILE id="cUbbs7" name="LaterGatorProcessor.cpp" compile="1" resource="0"
+            file="Source/LaterGatorProcessor.cpp"/>
+      <FILE id="swGr7u" name="LaterGatorProcessor.h" compile="0" resource="0"
+            file="Source/LaterGatorProcessor.h"/>
+      <FILE id="bQjcN3" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="eC4Bsd" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="qWC3Zl" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="cicJQN" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="LaterGator"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="LaterGator"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="CurveAdjusterSynthsOfSelf"/>
+        <MODULEPATH id="sliders_sos" path="../../MyModules"/>
+        <MODULEPATH id="sos_IAudioProcessor" path="../../MyModules"/>
+        <MODULEPATH id="sos_popup_window" path="../../MyModules"/>
+        <MODULEPATH id="sos_curve_adjuster" path="../../MyModules"/>
+        <MODULEPATH id="sos_drop_down_window" path="../../MyModules"/>
+        <MODULEPATH id="sos_modulator" path="../../MyModules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="sliders_sos" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="sos_curve_adjuster" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="sos_drop_down_window" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="sos_IAudioProcessor" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="sos_modulator" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="sos_popup_window" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>
