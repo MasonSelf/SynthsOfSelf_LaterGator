@@ -21,43 +21,43 @@ LaterGatorAudioProcessor::LaterGatorAudioProcessor()
                      #endif
                        )
 #endif
-, apvts(*this, nullptr, juce::Identifier("audioProcesserValueTree"),
-        {
-        std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_left", 1}, "Later Left (link)", juce::NormalisableRange<float>(0.00000f, 1.00000f, 0.00001f), 0.00000f), //version hint in parameterID
-        std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_right", 1}, "Later Right", juce::NormalisableRange<float>(0.00000f, 1.00000f, 0.00001f), 0.00000f), //version hint in parameterID
-        std::make_unique<juce::AudioParameterBool>(juce::ParameterID{"link", 1}, "Link", true),
-        std::make_unique<juce::AudioParameterBool>(juce::ParameterID{resetOrTriggerParamID.toString(), 1},
-                                                   "Reset / Trigger",
-                                                   false),
-        std::make_unique<juce::AudioParameterBool>(juce::ParameterID{freezeParamID.toString(), 1},
-                                                   "Freeze",
-                                                   false),
-        std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{rateFreeParamID.toString(), 1}, //version int in param id
-                                                    "Free Rate",                       //visible name
-                                                    juce::NormalisableRange<float>(0.0f, 40.0f, 0.00001f, 0.3f),
-                                                    1.0f), //skew factor
-        std::make_unique<juce::AudioParameterChoice>(juce::ParameterID{rateSyncParamID.toString(), 1},
-                                                     "Sync Rate",
-                                                     TempoSync::SyncStrings,
-                                                     6),
-        std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{rateBlendParamID.toString(), 1}, //version int in param id
-                                                    "Rate Blend",                       //visible name
-                                                    juce::NormalisableRange<float>(0.0f, 1.0f, 0.00001f),
-                                                    0.9f),
-        std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{modAmpParamID.toString(), 1}, //version int in param id
-                                                    "Modulation Amplitude",                       //visible name
-                                                    juce::NormalisableRange<float>(0.0f, 1.0f, 0.00001f),
-                                                    1.0f),
-        }
-),
-    gator(apvts,
-             "modulation",
-             rateFreeParamID,
-             rateSyncParamID,
-             rateBlendParamID,
-             resetOrTriggerParamID,
-             freezeParamID,
-             modAmpParamID)
+, gator(apvts,
+        "modulation",
+        rateFreeParamID,
+        rateSyncParamID,
+        rateBlendParamID,
+        resetOrTriggerParamID,
+        freezeParamID,
+        modAmpParamID),
+apvts(*this, nullptr, juce::Identifier("audioProcesserValueTree"),
+      {
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_left", 1}, "Later Left (link)", juce::NormalisableRange<float>(0.00000f, 1.00000f, 0.00001f), 0.00000f), //version hint in parameterID
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_right", 1}, "Later Right", juce::NormalisableRange<float>(0.00000f, 1.00000f, 0.00001f), 0.00000f), //version hint in parameterID
+    std::make_unique<juce::AudioParameterBool>(juce::ParameterID{"link", 1}, "Link", true),
+    std::make_unique<juce::AudioParameterBool>(juce::ParameterID{resetOrTriggerParamID.toString(), 1},
+                                               "Reset / Trigger",
+                                               false),
+    std::make_unique<juce::AudioParameterBool>(juce::ParameterID{freezeParamID.toString(), 1},
+                                               "Freeze",
+                                               false),
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{rateFreeParamID.toString(), 1}, //version int in param id
+                                                "Free Rate",                       //visible name
+                                                juce::NormalisableRange<float>(0.0f, 40.0f, 0.00001f, 0.3f),
+                                                1.0f), //skew factor
+    std::make_unique<juce::AudioParameterChoice>(juce::ParameterID{rateSyncParamID.toString(), 1},
+                                                 "Sync Rate",
+                                                 TempoSync::SyncStrings,
+                                                 6),
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{rateBlendParamID.toString(), 1}, //version int in param id
+                                                "Rate Blend",                       //visible name
+                                                juce::NormalisableRange<float>(0.0f, 1.0f, 0.00001f),
+                                                0.9f),
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{modAmpParamID.toString(), 1}, //version int in param id
+                                                "Modulation Amplitude",                       //visible name
+                                                juce::NormalisableRange<float>(0.0f, 1.0f, 0.00001f),
+                                                1.0f),
+}
+      )
 
 {
 }
