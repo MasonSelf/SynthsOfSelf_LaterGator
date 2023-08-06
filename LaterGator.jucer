@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="Ecyl9u" name="LaterGator" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              version="1.0.1" companyName="Synths of Self" pluginManufacturerCode="Sose"
+              version="1.0.2" companyName="Synths of Self" pluginManufacturerCode="Sose"
               pluginCode="Late">
   <MAINGROUP id="BB3ttJ" name="LaterGator">
     <GROUP id="{4868FE74-5543-34C8-D80F-8C55D36F3E96}" name="Source">
