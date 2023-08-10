@@ -16,18 +16,19 @@ LaterGatorAudioProcessorEditor::LaterGatorAudioProcessorEditor (LaterGatorAudioP
       lDelaySlider(p, p.leftDelayID, 0),
       rDelaySlider(p, p.rightDelayID , 1),
       linked_rDelaySlider(p, p.leftDelayID , 0), //note this is attached to the same param as lDelay
-        linkToggle(p, p.linkID, 2, "Link"),
+      linkToggle(p, p.linkID, 2, "Link"),
+      smoothingBoxFillSlider(p, p.smoothingParamID, 3, "Smooth", juce::Colours::lightgrey, juce::Colours::yellow, juce::Colours::black, juce::Colours::slategrey, 15.0f, buttonWidth),
       adjustWindow(p, juce::Colours::hotpink),
       modulationWindow( p,
                         p.gator.modProcessor,
                         120.0f,
                         120.0f,
-                        3,
                         4,
                         5,
                         6,
                         7,
                         8,
+                        9,
                         {"mod output"},
                         p.gator.modProcessor.modMatrix.destinationNames,
                         juce::Colours::black,
@@ -36,13 +37,14 @@ LaterGatorAudioProcessorEditor::LaterGatorAudioProcessorEditor (LaterGatorAudioP
                         juce::Colours::lightgrey,
                         opaquePink,
                         gatorLightGreen),
-      modDropTab(gatorLightGreen, juce::Colours::black, "Modulation", 2.0f),
-      adjustDropTab(juce::Colours::hotpink, juce::Colours::black, "Adjust", 2.0f)
+      modDropTab(gatorLightGreen, juce::Colours::black, "Modulation", 2.0f, 12.0f, 0.5f),
+      adjustDropTab(juce::Colours::hotpink, juce::Colours::black, "Adjust", 2.0f, 12.0f, 0.5f)
 
 {
     setSize (400, defaultWindowHeight);
     addAndMakeVisible(lDelaySlider);
     addAndMakeVisible(linkToggle);
+    addAndMakeVisible(smoothingBoxFillSlider);
 
     linkToggle.addListener(this);
     if (linkToggle.getToggleState())
@@ -101,9 +103,10 @@ void LaterGatorAudioProcessorEditor::resized()
     lDelaySlider.setBounds(sideMargin, defaultWindowHeight/ 4, sliderWidth, sliderHeight);
     rDelaySlider.setBounds(sideMargin, defaultWindowHeight / 4 * 3 - 30, sliderWidth, sliderHeight);
     linked_rDelaySlider.setBounds(rDelaySlider.getBounds());
-    const auto buttonWidth = 40;
+    
     const auto buttonHeight = 24;
-    linkToggle.setBounds(getWidth() / 2 - buttonWidth / 2, defaultWindowHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
+    linkToggle.setBounds(getWidth() / 3 - buttonWidth / 2, defaultWindowHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
+    smoothingBoxFillSlider.setBounds(getWidth() / 3 * 2 - buttonWidth / 2, defaultWindowHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
 
     adjustDropTab.setBounds(sideMargin, defaultWindowHeight - tabHeight, tabWidth, tabHeight);
     modDropTab.setBounds(adjustDropTab.getRight() + sideMargin, defaultWindowHeight - tabHeight, tabWidth * 1.4f, tabHeight);

@@ -58,15 +58,14 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-
-
     
     const juce::Identifier leftDelayID {"later_left"};
     const juce::Identifier rightDelayID {"later_right"};
     const juce::Identifier linkID {"link"};
+    const juce::Identifier smoothingParamID {"smoothing"};
 
     //identifiers pertaining to modulator
-    const juce::Identifier resetOrTriggerParamID {"resetOrTriggerParamID"};
+    const juce::Identifier resetParamID {"resetOrTriggerParamID"};
     const juce::Identifier freezeParamID {"freezeParamID"};
     const juce::Identifier rateFreeParamID {"rateFreeParamID"};
     const juce::Identifier rateSyncParamID {"rateSyncParamID"};
@@ -76,6 +75,7 @@ public:
     LaterGatorProcessor gator;
     juce::AudioProcessorValueTreeState apvts;
 private:
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LaterGatorAudioProcessor)
 };

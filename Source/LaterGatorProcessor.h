@@ -26,7 +26,8 @@ public:
                         const juce::Identifier& rateBlendParamName,
                         const juce::Identifier& resetParamName,
                         const juce::Identifier& freezeParamName,
-                        const juce::Identifier& scaleParamName);
+                        const juce::Identifier& scaleParamName,
+                        const juce::Identifier& _smoothParamName);
     void PrepareToPlay(double _sampleRate, int _numInputChans, int samplesPerBlock);
     void Process(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages);
     void SaveState(juce::AudioProcessorValueTreeState& apvts);
@@ -41,7 +42,7 @@ public:
     juce::AudioProcessorValueTreeState& apvts;
 private:
     void Translate_0_1_ToSamples(float& input);
-    void HandlePossibleCrossfade(float& sample, float& r, float lDelayTime, float rDelayTime);
+    void HandlePossibleCrossfade(float& l, float& r, float lDelayTime, float rDelayTime);
     
     double sampleRate{44100.0};
     const int numOutputChans{2}; //marked const because Later Gator requires stereo output
@@ -54,7 +55,7 @@ private:
     const juce::Identifier leftDelayID {"later_left"};
     const juce::Identifier rightDelayID {"later_right"};
     const juce::Identifier linkID {"link"};
-
+    const juce::Identifier smoothParamID;
 
     
 };

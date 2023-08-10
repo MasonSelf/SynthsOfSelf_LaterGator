@@ -17,20 +17,21 @@ LaterGatorProcessor::LaterGatorProcessor(juce::AudioProcessorValueTreeState& tre
                                          const juce::Identifier& rateBlendParamName,
                                          const juce::Identifier& resetParamName,
                                          const juce::Identifier& freezeParamName,
-                                         const juce::Identifier& scaleParamName)
+                                         const juce::Identifier& scaleParamName,
+                                         const juce::Identifier& _smoothParamName)
 :   lCurve("lCurve", 0.0f, 0.2, {{{0.0f, 0.0f}, {0.5f, 0.0f}, {1.0f, 1.0f}}} ),
     rCurve("rCurve", 0.0f, 0.2,{{{0.0f, 0.0f}, {0.5f, 0.0f}, {1.0f, 1.0f}}} ),
-    apvts(tree),
     modProcessor(modulatorName,
-                 tree,
-                 rateFreeParamName,
-                 rateSyncParamName,
-                 rateBlendParamName,
-                 resetParamName,
-                 freezeParamName,
-                 scaleParamName,
-                 {"left delay", "right delay"})
-
+                tree,
+                rateFreeParamName,
+                rateSyncParamName,
+                rateBlendParamName,
+                resetParamName,
+                freezeParamName,
+                scaleParamName,
+                {"left delay", "right delay"}),
+    apvts(tree),
+smoothParamID(_smoothParamName)
 {
 }
 
@@ -134,8 +135,8 @@ void LaterGatorProcessor::HandlePossibleCrossfade(float& l, float& r, float lDel
 {
     float lDelayed = l;
     float rDelayed = r;
-    lDelay.Process(lDelayed, lDelayTime);
-    rDelay.Process(rDelayed, rDelayTime);
+    lDelay.Process(lDelayed, lDelayTime, *apvts.getRawParameterValue(smoothParamID));
+    rDelay.Process(rDelayed, rDelayTime, *apvts.getRawParameterValue(smoothParamID));
     
     //left
     if (lDelayTime == 0.0f && crossfadeGainL.getTargetValue() != 0.0f)

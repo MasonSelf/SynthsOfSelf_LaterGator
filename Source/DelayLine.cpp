@@ -10,14 +10,16 @@
 
 #include "DelayLine.h"
 
+
 void DelayBuffer::Init (double sampleRate)
 {
     bufferLen = sampleRate * 2.0;
     buffer.resize (bufferLen);
-    smoothedDelayTime.reset(sampleRate, 0.2);
+    //smoothedDelayTime.reset(sampleRate, 0.2);
+    smoothedDelayTime.Init(sampleRate);
 }
 
-void DelayBuffer::PushSample (float sample)
+void DelayBuffer::PushSample (float& sample)
 {
     writePos++;
     writePos %= bufferLen;
@@ -25,11 +27,11 @@ void DelayBuffer::PushSample (float sample)
 }
 
 /*process with typical control over dryWet and feedback*/
-void DelayBuffer::Process(float& sample, float delayAmount, float dryWet, float feedback)
+void DelayBuffer::Process(float& sample, float delayAmount, float dryWet, float feedback, float smoothParam)
 {
     //get delayed sample
     auto delayedSample = sample;
-    GetDelayedSample(delayedSample, delayAmount);
+    GetDelayedSample(delayedSample, delayAmount, smoothParam);
     
     //            dry sample                  wet sample                  feedback
     sample = sample * (1.0f - dryWet) + delayedSample * dryWet + previousSample * feedback;
@@ -39,17 +41,17 @@ void DelayBuffer::Process(float& sample, float delayAmount, float dryWet, float 
 }
 
 /*process with out param as ONLY the delayed sample (100% wet, 0% feedback)*/
-void DelayBuffer::Process(float& sample, float delayAmount)
+void DelayBuffer::Process(float& sample, float delayAmount, float smoothParam)
 {
-    GetDelayedSample(sample, delayAmount);
+    GetDelayedSample(sample, delayAmount, smoothParam);
 }
 
-void DelayBuffer::GetDelayedSample (float& sample, float delayAmount)
+void DelayBuffer::GetDelayedSample (float& sample, float delayAmount, float smoothParam)
 {
     jassert (delayAmount <= bufferLen);
     
     UpdateSmoothedDelayTime(delayAmount);
-    auto newSmoothedDelayTime = smoothedDelayTime.getNextValue();
+    auto newSmoothedDelayTime = smoothedDelayTime.GetNextValue(smoothParam);
     
     // add buffer len and mod to wrap correctly on circular buffer
     int readIndexA = Modulo (writePos - static_cast<int>(newSmoothedDelayTime),  bufferLen);
@@ -69,8 +71,5 @@ float DelayBuffer::LinInterp(float sample_x, float sample_x1, float inPhase)
 
 void DelayBuffer::UpdateSmoothedDelayTime(float delayAmount)
 {
-    if (delayAmount != smoothedDelayTime.getTargetValue())
-    {
-        smoothedDelayTime.setTargetValue(delayAmount);
-    }
+    smoothedDelayTime.SetTargetValue(delayAmount);
 }

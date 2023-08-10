@@ -26,16 +26,18 @@ LaterGatorAudioProcessor::LaterGatorAudioProcessor()
         rateFreeParamID,
         rateSyncParamID,
         rateBlendParamID,
-        resetOrTriggerParamID,
+        resetParamID,
         freezeParamID,
-        modAmpParamID),
+        modAmpParamID,
+        smoothingParamID),
 apvts(*this, nullptr, juce::Identifier("audioProcesserValueTree"),
       {
-    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_left", 1}, "Later Left (link)", juce::NormalisableRange<float>(0.00000f, 1.00000f, 0.00001f), 0.00000f), //version hint in parameterID
-    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_right", 1}, "Later Right", juce::NormalisableRange<float>(0.00000f, 1.00000f, 0.00001f), 0.00000f), //version hint in parameterID
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_left", 1}, "Later Left (link)", juce::NormalisableRange<float>(0.0f, 1.0f, 0.00001f), 0.00000f), //version hint in parameterID
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"later_right", 1}, "Later Right", juce::NormalisableRange<float>(0.0f, 1.0f, 0.00001f), 0.00000f), //version hint in parameterID
     std::make_unique<juce::AudioParameterBool>(juce::ParameterID{"link", 1}, "Link", true),
-    std::make_unique<juce::AudioParameterBool>(juce::ParameterID{resetOrTriggerParamID.toString(), 1},
-                                               "Reset / Trigger",
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{smoothingParamID.toString(), 1}, "Smoothing", juce::NormalisableRange<float>(0.0f, 1.0f, 0.01f), 0.5f), 
+    std::make_unique<juce::AudioParameterBool>(juce::ParameterID{resetParamID.toString(), 1},
+                                               "Reset",
                                                false),
     std::make_unique<juce::AudioParameterBool>(juce::ParameterID{freezeParamID.toString(), 1},
                                                "Freeze",

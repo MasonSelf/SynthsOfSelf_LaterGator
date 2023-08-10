@@ -51,9 +51,10 @@
         <MODULEPATH id="sliders_sos" path="../../MyModules"/>
         <MODULEPATH id="sos_IAudioProcessor" path="../../MyModules"/>
         <MODULEPATH id="sos_popup_window" path="../../MyModules"/>
-        <MODULEPATH id="sos_curve_adjuster" path="../../MyModules"/>
         <MODULEPATH id="sos_drop_down_window" path="../../MyModules"/>
         <MODULEPATH id="sos_modulator" path="../../MyModules"/>
+        <MODULEPATH id="sos_maths" path="../../MyModules"/>
+        <MODULEPATH id="sos_curve_adjuster" path="../../MyModules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
@@ -75,6 +76,7 @@
     <MODULE id="sos_curve_adjuster" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="sos_drop_down_window" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="sos_IAudioProcessor" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="sos_maths" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="sos_modulator" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="sos_popup_window" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>

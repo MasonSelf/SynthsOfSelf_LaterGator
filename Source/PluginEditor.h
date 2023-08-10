@@ -39,13 +39,18 @@ private:
     GatorSlider lDelaySlider;
     GatorSlider rDelaySlider;
     GatorSlider linked_rDelaySlider; //replaces regular rDelaySlider when linked
+    
+    const int buttonWidth {60};
+    
     SOSToggleButton linkToggle;
+    SOSDragFillBox smoothingBoxFillSlider;
 
     const int defaultWindowHeight {300};
 
     const int dropDownWindowHeight {200};
     const int tabWidth {60};
     const int tabHeight {30};
+    
     LaterGatorAdjustmentWindow adjustWindow;
     LFO_modEditor modulationWindow;
     DropDownTab modDropTab;
