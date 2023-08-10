@@ -45,8 +45,8 @@ void LaterGatorProcessor::PrepareToPlay(double _sampleRate, int _numInputChans, 
     }
 
     sampleRate = _sampleRate;
-    crossfadeGainL.reset(sampleRate, 0.002);
-    crossfadeGainR.reset(sampleRate, 0.002);
+    crossfadeGainL.reset(sampleRate, 0.02);
+    crossfadeGainR.reset(sampleRate, 0.02);
     lCurve.smoothedVal.Reset(sampleRate);
     rCurve.smoothedVal.Reset(sampleRate);
     

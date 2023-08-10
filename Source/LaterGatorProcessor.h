@@ -12,8 +12,10 @@
 
 #include "DelayLine.h"
 #include <juce_audio_processors/juce_audio_processors.h>
+//#include <juce_dsp/juce_dsp.h>
 #include <sos_curve_adjuster/sos_curve_adjuster.h>
 #include <sos_modulator/sos_modulator.h>
+
 
 class LaterGatorProcessor
 {

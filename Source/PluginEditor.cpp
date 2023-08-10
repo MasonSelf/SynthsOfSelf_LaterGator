@@ -17,7 +17,18 @@ LaterGatorAudioProcessorEditor::LaterGatorAudioProcessorEditor (LaterGatorAudioP
       rDelaySlider(p, p.rightDelayID , 1),
       linked_rDelaySlider(p, p.leftDelayID , 0), //note this is attached to the same param as lDelay
       linkToggle(p, p.linkID, 2, "Link"),
-      smoothingBoxFillSlider(p, p.smoothingParamID, 3, "Smooth", juce::Colours::lightgrey, juce::Colours::yellow, juce::Colours::black, juce::Colours::slategrey, 15.0f, buttonWidth),
+      smoothingBoxFillSlider(p,
+                             p.smoothingParamID,
+                             3, "Smooth",
+                             juce::Colours::lightgrey,
+                             juce::Colours::yellow,
+                             juce::Colours::black,
+                             juce::Colours::slategrey,
+                             15.0f,
+                             buttonWidth,
+                             true,
+                             "!",
+                             0.8f),
       adjustWindow(p, juce::Colours::hotpink),
       modulationWindow( p,
                         p.gator.modProcessor,
@@ -56,11 +67,8 @@ LaterGatorAudioProcessorEditor::LaterGatorAudioProcessorEditor (LaterGatorAudioP
         addAndMakeVisible(rDelaySlider);
     }
 
+
     
-    //addAndMakeVisible(adjustWindow);
-    //addAndMakeVisible(modulationWindow);
-//    modulationWindow.tab.addListener(this);
-//    modulationWindow.popUpWindow.closeBox.addListener(this);
 
     addAndMakeVisible(modDropTab);
     modDropTab.addListener(this);

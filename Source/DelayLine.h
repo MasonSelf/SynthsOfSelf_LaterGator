@@ -19,6 +19,9 @@
 class DoubleSmoothedValue
 {
 public:
+    DoubleSmoothedValue(float manualSmoothing)
+    : manualSmoothingDefault(manualSmoothing)
+    {}
     void Init(double sampleRate)
     {
         smoothedValue.reset(sampleRate, 0.2);
@@ -40,6 +43,19 @@ public:
         return manuallySmoothedVal;
     }
     
+    float GetNextValue()
+    {
+        auto tempTarget = smoothedValue.getNextValue();
+        if (juce::approximatelyEqual(manuallySmoothedVal, tempTarget))
+        {
+            return manuallySmoothedVal;
+        }
+        
+        auto diff = tempTarget - manuallySmoothedVal;
+        manuallySmoothedVal += (diff * manualSmoothingDefault);
+        return manuallySmoothedVal;
+    }
+    
     void SetTargetValue(float target)
     {
         auto currentTarget = smoothedValue.getTargetValue();
@@ -55,13 +71,15 @@ private:
         //TODO: more resolution on smoother values
         //input is 0.0f to 1.0f
         //target range? 0.001f none -> 0.00001f max?
-        paramInput = (1.0f - paramInput) * 0.9f + 0.1f; //invert, then scale down, offset to avoid multiplying by 0
+        paramInput = (1.0f - paramInput) * 1.2f + 0.01f; //invert, then scale down, offset to avoid multiplying by 0
+        //DBG(paramInput);
         return manualSmoothingDefault * paramInput;
     }
     
+    
     juce::SmoothedValue<float, juce::ValueSmoothingTypes::Linear> smoothedValue;
     float manuallySmoothedVal {0.0f};
-    float manualSmoothingDefault {0.001f}; //palletable default was 0.0002
+    float manualSmoothingDefault;
 
 };
 
@@ -92,6 +110,6 @@ private:
     int bufferLen{0};
     float previousSample {0.0f};
     
-    /*juce::SmoothedValue<float, juce::ValueSmoothingTypes::Linear>*/ DoubleSmoothedValue smoothedDelayTime;
+    DoubleSmoothedValue smoothedDelayTime{0.001f};
     
 };
