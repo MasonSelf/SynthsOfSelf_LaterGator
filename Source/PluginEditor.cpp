@@ -21,14 +21,14 @@ LaterGatorAudioProcessorEditor::LaterGatorAudioProcessorEditor (LaterGatorAudioP
                              p.smoothingParamID,
                              3, "Smooth",
                              juce::Colours::lightgrey,
-                             juce::Colours::yellow,
+                             gatorGreen,
                              juce::Colours::black,
                              juce::Colours::slategrey,
                              15.0f,
                              buttonWidth,
                              true,
                              "!",
-                             0.8f),
+                             0.87f),
       adjustWindow(p, juce::Colours::hotpink),
       modulationWindow( p,
                         p.gator.modProcessor,
@@ -100,7 +100,7 @@ void LaterGatorAudioProcessorEditor::paint (juce::Graphics& g)
     g.drawFittedText("Later Gator", getLocalBounds().withBottom(30).withX(105), juce::Justification::centred, 1);
     g.setFont(12.0f);
     g.setColour(juce::Colours::black);
-    g.drawMultiLineText("version 1.0.2 \nwww.synthsofself.com", getWidth() / 2 + 80, defaultWindowHeight - 16,120, juce::Justification::centredLeft);
+    g.drawMultiLineText("version 1.0.3 \nwww.synthsofself.com", getWidth() / 2 + 80, defaultWindowHeight - 16,120, juce::Justification::centredLeft);
 }
 
 void LaterGatorAudioProcessorEditor::resized()
