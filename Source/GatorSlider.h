@@ -10,7 +10,7 @@
 
 #pragma once
 #include "binaryData.h"
-#include <sliders_sos/sliders_sos.h>
+#include <sos_sliders/sos_sliders.h>
 
 class GatorSlider : public SOSSliderHorizontal, public juce::Timer
 {
