@@ -1,4 +1,5 @@
 # Later Gator
+<img width="647" alt="later gator product square" src="https://github.com/MasonSelf/SynthsOfSelf_LaterGator/assets/55724853/942a88db-eee7-47e1-850a-e821430d07f8">
 
 Later Gator is a stereo audio effect plugin made with [JUCE](https://github.com/juce-framework/JUCE). In the style of a "sample delay" utility, 
 Later Gator applies a delay to the left and/or right audio channel, 
